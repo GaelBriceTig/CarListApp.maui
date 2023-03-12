@@ -18,6 +18,7 @@ namespace CarListApp.maui.ViewModels
        public CarDetailsViewModel()
         {
             Title = $"Car Details - {car.Make} {car.Model}";
+            //essay
         }
     }
 }
