@@ -19,10 +19,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		string  dbPath = Path.Combine(FileSystem.AppDataDirectory, "cars.db3");
+		string dbPath = Path.Combine(FileSystem.AppDataDirectory, "cars.db3");
 		builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<CarService>(s, dbPath));
-
- 
 
 		builder.Services.AddSingleton<CarListViewModel>();
 		builder.Services.AddTransient<CarDetailsViewModel>();

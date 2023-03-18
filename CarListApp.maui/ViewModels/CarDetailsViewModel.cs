@@ -5,20 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using CarListApp.maui.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Web;
 
 namespace CarListApp.maui.ViewModels
 {
-    [QueryProperty(nameof(Car), "Car")]
-    public partial class CarDetailsViewModel: BaseViewModel
+    [QueryProperty(nameof(Id), nameof(Id))]
+    public partial class CarDetailsViewModel: BaseViewModel, IQueryAttributable
     {
 
         [ObservableProperty]
         Car car;
-
-       public CarDetailsViewModel()
+        
+        [ObservableProperty]
+        int id;
+        
+       public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            Title = $"Car Details - {car.Make} {car.Model}";
-            //essay
+            Id = Convert.ToInt32(HttpUtility.UrlDecode(query["Id"].ToString()));
+            Car = App.CarService.GetCar(Id);
+            
         }
     }
 }
